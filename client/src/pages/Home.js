@@ -1,14 +1,14 @@
-import ProductListItem from "../components/ProductListItem.js";
 import { useEffect, useState } from "react";
+import ProductListItem from "../components/ProductListItem.js";
 
-const API_URL = process.env.REACT_APP_API_URL;
+const API_URL = "http://localhost:8000";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
     fetch(`${API_URL}/products`)
-      .then((res) => res.json())
-      .then((result) => {
+      .then(res => res.json())
+      .then(result => {
         setProducts(result.products);
       });
   }, []);
@@ -27,7 +27,7 @@ const Home = () => {
       <section className="py-5">
         <div className="container px-4 px-lg-5 mt-5">
           <div className="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-            {products.map((product) => (
+            {products.map(product => (
               <ProductListItem key={product.sku} {...product} />
             ))}
           </div>

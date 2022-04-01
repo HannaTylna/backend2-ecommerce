@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-const API_URL = process.env.REACT_APP_API_URL;
+const API_URL = "http://localhost:8000";
 
 const Product = () => {
   let params = useParams();
   const [product, setProduct] = useState(null);
   useEffect(() => {
     fetch(`${API_URL}/products/${params.sku}`)
-      .then((res) => res.json())
-      .then((result) => {
+      .then(res => res.json())
+      .then(result => {
         setProduct(result);
       });
   }, [params.sku]);
