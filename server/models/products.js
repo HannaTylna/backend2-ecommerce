@@ -10,4 +10,14 @@ const readProducts = async () => {
   return JSON.parse(productsJSON);
 };
 
-module.exports = { readProducts };
+const getAllProducts = async () => {
+  const { products } = await readProducts();
+  return products;
+};
+
+const getProduct = async () => {
+  const { products } = await readProduct();
+  return products.map(product => product.sku === sku);
+};
+
+module.exports = { getAllProducts, getProduct };
