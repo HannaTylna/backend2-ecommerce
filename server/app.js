@@ -7,6 +7,7 @@ const userRoutes = require("./controllers/users.js");
 const app = express();
 
 app.use(cors());
+app.use(express.json());
 
 app.get("/", (req, res) => {
   res.send("Success!");
