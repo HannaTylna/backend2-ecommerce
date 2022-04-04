@@ -1,6 +1,12 @@
 const express = require("express");
+
+const {
+  createProduct,
+  getAllProducts,
+  getProduct
+} = require("../models/products.js");
+
 const productRoutes = express.Router();
-const { getAllProducts, getProduct } = require("../models/products.js");
 
 productRoutes.get("/", async (req, res) => {
   const products = await getAllProducts();
@@ -14,6 +20,11 @@ productRoutes.get("/:sku", async (req, res) => {
   } else {
     res.sendStatus(404);
   }
+});
+
+productRoutes.post("/", async (req, res) => {
+  const product = await createProduct(req.body);
+  return res.json(product);
 });
 
 module.exports = { productRoutes };
